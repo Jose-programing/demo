@@ -183,35 +183,27 @@ public class CalendarController implements Initializable {
     @FXML
     private void onBackClicked() {
         try {
-            // 1. You have to load the FXML file manually every time
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("MainScreen.fxml"));
             Parent root = loader.load();
 
-            // 2. You have to find the current window (Stage) from the button that was clicked
             Stage stage = (Stage) monthCombo.getScene().getWindow();
 
-            // 3. Swap the scene
             stage.setScene(new Scene(root));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    // -------------------------------------------------------------------
-    // Integration point — teammate calls this to push task data in
-    // -------------------------------------------------------------------
 
-    /**
-     * Your teammate calls this method after building his task map.
-     * Example: calendarController.loadTaskMap(hisHashMap);
-     */
+
+    //call after building hash map
     public void loadTaskMap(HashMap<LocalDate, ArrayList<Task>> taskMap) {
         model.loadTaskMap(taskMap);
         refreshGrid();
     }
 
     /**
-     * Your teammate calls this to find out which date the user picked,
-     * after navigating to his day screen.
+     * call to see which date got selected
      */
     public LocalDate getSelectedDate() {
         return model.getSelectedDate();
