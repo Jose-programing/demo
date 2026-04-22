@@ -12,13 +12,20 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Optional;
 
 public class AddController {
     private TaskManager manager;
+    private LocalDate selectedDate;
+
     public void setManager(TaskManager manager) {
         this.manager = manager;
     }
+    public void setDate(LocalDate selectedDate) {
+        this.selectedDate = selectedDate;
+    }
+
 
     @FXML
     private Button returnButton;
@@ -68,7 +75,7 @@ public class AddController {
             return;
         }
         //Goes through and creates the task.
-        Task newTask = new Task("2026-4-20", title, type, priority, time);
+        Task newTask = new Task(selectedDate, title, type, priority, time);
         manager.addTask(newTask);
         manager.SaveDataToFile();
         showAlertAfterAdd();
@@ -118,6 +125,7 @@ public class AddController {
         timeField.clear();
         priorityField.clear();
     }
+
 
 }
 
