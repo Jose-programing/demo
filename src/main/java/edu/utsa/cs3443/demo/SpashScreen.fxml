@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.utsa.cs3443.demo.SplashScreenController">
+
+    <center>
+        <VBox alignment="CENTER" spacing="20" BorderPane.alignment="CENTER">
+
+            <!-- LOGO -->
+            <ImageView fx:id="logoImage" fitHeight="208.0" fitWidth="317.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../images/rtbLogo.png" />
+                </image>
+            </ImageView>
+
+            <!-- ENTER BUTTON -->
+            <Button fx:id="enterButton" onAction="#onContinue" prefHeight="40" prefWidth="291.0" style="-fx-background-color: #e63946; -fx-text-fill: white; -fx-background-radius: 5;" text="ENTER HORIZON PLANNER">
+                <font>
+                    <Font name="ROGFonts-Regular" size="14.0" />
+                </font>
+            </Button>
+
+        </VBox>
+    </center>
+
+</BorderPane>
