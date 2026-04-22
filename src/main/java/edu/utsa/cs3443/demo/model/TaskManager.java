@@ -3,14 +3,11 @@ package edu.utsa.cs3443.demo.model;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class TaskManager {
     private ArrayList<Task> Tasks = new ArrayList<>();
-    private HashMap<LocalDate, ArrayList<Task>> taskMap = new HashMap<>();
 
     public ArrayList<Task> getTasks() {
         return Tasks;
@@ -18,8 +15,6 @@ public class TaskManager {
 
     public void addTask(Task task) {
         Tasks.add(task);
-        taskMap.putIfAbsent(task.getDay(), new ArrayList<>());
-        taskMap.get(task.getDay()).add(task);
         sortByPriority();
     }
 
@@ -43,15 +38,7 @@ public class TaskManager {
 
     public boolean deleteTask(Task task) throws IOException {
         Tasks.remove(task);
-
-        ArrayList<Task> list = taskMap.get(task.getDay());
-        if (list != null) {
-            list.remove(task);
-            if (list.isEmpty()) {
-                taskMap.remove(task.getDay());
-            }
-        }
-
+        sortByPriority();
         SaveDataToFile();
         return true;
     }
@@ -92,8 +79,7 @@ public class TaskManager {
             System.out.println("invalid line format");
             return null;
         }
-        LocalDate day = LocalDate.parse(parts[0].trim());
-        ;
+        String day = parts[0].trim();
         String title = parts[1].trim();
         String type = parts[2].trim();
         int priority = Integer.parseInt(parts[3].trim());
@@ -104,13 +90,7 @@ public class TaskManager {
 
 
     public void sortByPriority() {
-        for (ArrayList<Task> list : taskMap.values()) {
-            list.sort((t1, t2) -> Integer.compare(t1.getPriority(), t2.getPriority()));
-        }
-    }
-
-    public HashMap<LocalDate, ArrayList<Task>> getTaskMap() {
-        return null;// need to update this
+        Tasks.sort((t1, t2) -> Integer.compare(t1.getPriority(), t2.getPriority()));
     }
 
 }
