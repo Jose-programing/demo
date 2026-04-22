@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1500.0" style="-fx-background-image: sd;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.utsa.cs3443.demo.model.CrudController">
+   <children>
+      <ListView fx:id="taskListView" layoutX="35.0" layoutY="231.0" prefHeight="498.0" prefWidth="1066.0" style="-fx-font-family: monospace; -fx-font-size: 22;">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></ListView>
+      <Label layoutX="43.0" layoutY="177.0" prefHeight="54.0" prefWidth="637.0" text="Select and modify Tasks for this day: ">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Button fx:id="updateButton" layoutX="1170.0" layoutY="400.0" mnemonicParsing="false" onAction="#goToUpdate" prefHeight="70.0" prefWidth="200.0" text="Update">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="returnButton" layoutX="24.0" layoutY="27.0" mnemonicParsing="false" onAction="#goToCalandar" prefHeight="70.0" prefWidth="200.0" text="Return">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="addButton" alignment="CENTER" layoutX="1170.0" layoutY="248.0" mnemonicParsing="false" onAction="#goToAdd" prefHeight="70.0" prefWidth="200.0" text="ADD">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="deleteButton" layoutX="1170.0" layoutY="566.0" mnemonicParsing="false" onAction="#goToDelete" prefHeight="70.0" prefWidth="200.0" text="Remove">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <TextField alignment="CENTER" editable="false" layoutX="543.0" layoutY="23.0" prefHeight="78.0" prefWidth="414.0" text="April 20th, 2026">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="NONE" />
+         </cursor>
+      </TextField>
+   </children>
+</AnchorPane>
