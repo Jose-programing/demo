@@ -12,7 +12,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 public class UpdateController {
 
@@ -101,8 +100,5 @@ public class UpdateController {
     void goToCRUD(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
-    }
-
-    public void setDate(LocalDate selectedDate) {
     }
 }

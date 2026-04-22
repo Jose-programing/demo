@@ -1,5 +1,7 @@
 package edu.utsa.cs3443.demo.model;
 
+import edu.utsa.cs3443.demo.Task;
+
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
@@ -12,7 +14,6 @@ public class CalendarModel {
 
     // Reference to teammate's task map — your code only reads from this
     private HashMap<LocalDate, ArrayList<Task>> taskMap = new HashMap<>();
-
 
     public CalendarModel() {
         this.currentYearMonth = YearMonth.now();
