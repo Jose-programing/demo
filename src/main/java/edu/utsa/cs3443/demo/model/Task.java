@@ -1,14 +1,16 @@
 package edu.utsa.cs3443.demo.model;
 
+import java.time.LocalDate;
+
 public class Task {
     private String taskTitle;
     private String taskType;
     private int priority;
     private String time;
-    private String day;
+    private LocalDate day;
 
 
-    public Task(String day, String taskTitle, String taskType, int priority, String time) {
+    public Task(LocalDate day, String taskTitle, String taskType, int priority, String time) {
         this.day = day;
         this.taskTitle = taskTitle;
         this.taskType = taskType;
@@ -54,10 +56,10 @@ public class Task {
         this.time = time;
     }
 
-    public void setDay(String day) {
+    public void setDay(LocalDate day) {
         this.day = day;
     }
-    public String getDay() {
+    public LocalDate getDay() {
         return day;
     }
 

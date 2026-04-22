@@ -1,6 +1,8 @@
 package edu.utsa.cs3443.demo;
 
 import edu.utsa.cs3443.demo.model.CalendarModel;
+import edu.utsa.cs3443.demo.model.Task;
+import edu.utsa.cs3443.demo.model.TaskManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -20,6 +22,14 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class CalendarController implements Initializable {
+    private TaskManager manager;
+    public void setTaskManager(TaskManager manager) {
+        this.manager = manager;
+
+        // Also give data to model
+        model.loadTaskMap(manager.getTaskMap());
+        refreshGrid();
+    }
 
 
 
@@ -107,9 +117,24 @@ public class CalendarController implements Initializable {
             return;
         }
 
-        // TODO: replace with the actual scene call
-        // SceneManager.switchTo("DayView", model.getSelectedDate());
-        System.out.println("Navigate to day: " + model.getSelectedDate());
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("crud-screen.fxml"));
+            Parent root = loader.load();
+
+            // Get controller of CRUD screen
+            CrudController controller = loader.getController();
+
+            // Pass data
+            controller.setDate(model.getSelectedDate());
+            controller.setTaskManager(manager);
+
+            Stage stage = (Stage) dayGrid.getScene().getWindow();
+            stage.setScene(new Scene(root));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 

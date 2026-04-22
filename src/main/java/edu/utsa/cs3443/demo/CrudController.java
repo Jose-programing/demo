@@ -14,11 +14,30 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 
 public class CrudController {
 
-    private TaskManager manager =  new TaskManager();
+
+    private LocalDate selectedDate;
+    private TaskManager manager;
+    public void setTaskManager(TaskManager manager) {
+        this.manager = manager;
+        tryLoad();
+    }
+
+    public void setDate(LocalDate date) {
+        this.selectedDate = date;
+        tryLoad();
+    }
+    private void tryLoad() {
+        if (manager != null && selectedDate != null) {
+            refreshList();
+        }
+    }
+
     @FXML
     private Button addButton;
 
@@ -38,14 +57,19 @@ public class CrudController {
     private ListView<Task> taskListView;
 
     private void refreshList() {
-        taskListView.setItems(FXCollections.observableArrayList(manager.getTasks()));
+        if (manager == null || selectedDate == null) return;
+
+        ArrayList<Task> tasks = manager.getTaskMap().get(selectedDate);
+
+        if (tasks != null) {
+            taskListView.setItems(FXCollections.observableArrayList(tasks));
+        } else {
+            taskListView.setItems(FXCollections.observableArrayList());
+        }
     }
 
     @FXML
      public void initialize() throws IOException { // Starts and pops up when CRUD screen is opened
-        manager.loadTasks();
-        manager.sortByPriority();
-        refreshList();
     }
 
     @FXML
@@ -55,6 +79,8 @@ public class CrudController {
             Parent root = loader.load();
             AddController controller = loader.getController();
             controller.setManager(manager);
+            controller.setDate(selectedDate);
+
 
 
             Stage stage = new Stage();
@@ -92,6 +118,7 @@ public class CrudController {
             UpdateController controller = loader.getController();
             controller.setTask(selected);
             controller.setManager(manager);
+            controller.setDate(selectedDate);
 
 
             Stage stage = new Stage();
@@ -115,7 +142,21 @@ public class CrudController {
 
     @FXML
     void goToCalandar(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Calendar.fxml"));
+            Parent root = loader.load();
 
+            CalendarController controller = loader.getController();
+
+            // pass updated data back
+            controller.setTaskManager(manager);
+
+            Stage stage = (Stage) returnButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
