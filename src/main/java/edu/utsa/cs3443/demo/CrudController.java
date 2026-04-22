@@ -1,6 +1,5 @@
 package edu.utsa.cs3443.demo;
 
-import edu.utsa.cs3443.demo.model.Task;
 import edu.utsa.cs3443.demo.model.TaskManager;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -14,6 +13,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import java.io.IOException;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+
 
 
 public class CrudController {
@@ -114,8 +116,48 @@ public class CrudController {
     }
 
     @FXML
-    void goToCalandar(ActionEvent event) {
+    void goToCalendar(ActionEvent event) {
+        //also victor
 
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("CalendarView.fxml"));
+            Parent root = loader.load();
+
+
+            CalendarController calendarController = loader.getController();
+
+            //convert arraylist to hashmap
+            java.util.HashMap<java.time.LocalDate, java.util.ArrayList<Task>> taskMap = new java.util.HashMap<>();
+
+            java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("yyyy-M-d");
+
+
+            //loop through list and put into map
+            for (Task t : manager.getTasks()){
+                java.time.LocalDate date = java.time.LocalDate.parse(t.getDay(), formatter);
+                taskMap.putIfAbsent(date, new java.util.ArrayList<>());
+                taskMap.get(date).add(t);
+
+            }
+
+            //give map back to calendar and go back
+            calendarController.loadTaskMap(taskMap);
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    //Below added by victor to link with calendar
+
+    private java.time.LocalDate currentDate;
+
+    public void setDayToDisplay(java.time.LocalDate date){
+        this.currentDate = date;
+        System.out.println("Got to day from calender. Day = " + date);
     }
 
 }

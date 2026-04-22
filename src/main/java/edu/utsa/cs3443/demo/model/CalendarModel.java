@@ -1,6 +1,7 @@
 package edu.utsa.cs3443.demo.model;
 
 import edu.utsa.cs3443.demo.Task;
+//import edu.utsa.cs3443.demo.Task;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -61,7 +62,7 @@ public class CalendarModel {
      * USed to show number of tasks on a day (before having to go to day screen)
      */
     public int getTaskCount(LocalDate date) {
-        return taskMap.getOrDefault(date, new ArrayList<>()).size();
+        return taskMap.getOrDefault(date, new ArrayList<Task>()).size();
     }
 
 

@@ -1,7 +1,6 @@
 package edu.utsa.cs3443.demo;
 
 
-import edu.utsa.cs3443.demo.model.Task;
 import edu.utsa.cs3443.demo.model.TaskManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

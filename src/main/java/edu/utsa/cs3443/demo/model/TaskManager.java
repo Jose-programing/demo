@@ -1,5 +1,7 @@
 package edu.utsa.cs3443.demo.model;
 
+import edu.utsa.cs3443.demo.Task;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

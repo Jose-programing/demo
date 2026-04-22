@@ -107,9 +107,28 @@ public class CalendarController implements Initializable {
             return;
         }
 
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("crud-screen.fxml"));
+            Parent root = loader.load();
+
+            CrudController crudController = loader.getController();
+            crudController.setDayToDisplay(model.getSelectedDate());
+
+            Stage stage = (Stage) monthCombo.getScene().getWindow();
+            stage.setScene(new Scene(root));
+
+        }
+
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
+
         // TODO: replace with the actual scene call
         // SceneManager.switchTo("DayView", model.getSelectedDate());
-        System.out.println("Navigate to day: " + model.getSelectedDate());
+        //System.out.println("Navigate to day: " + model.getSelectedDate());
     }
 
 
