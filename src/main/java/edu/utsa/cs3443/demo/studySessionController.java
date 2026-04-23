@@ -158,6 +158,25 @@ public class studySessionController {
         }
     }
 
+//a victor addition
+
+    @FXML
+    void goBack(ActionEvent event) {
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainMenuScreen.fxml"));
+
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+
+            stage.setTitle("Horizon Planner");
+            stage.show();
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
 

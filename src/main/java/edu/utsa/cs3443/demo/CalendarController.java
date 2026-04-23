@@ -203,7 +203,7 @@ public class CalendarController implements Initializable {
     private void onBackClicked() {
         try {
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("MainScreen.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenuScreen.fxml"));
             Parent root = loader.load();
 
             Stage stage = (Stage) monthCombo.getScene().getWindow();

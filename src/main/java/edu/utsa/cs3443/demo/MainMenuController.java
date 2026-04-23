@@ -69,17 +69,17 @@ public class MainMenuController {
 
     @FXML
     private void onCalendar(ActionEvent event) {
-        loadScreen(event, "CalendarScreen.fxml");
+        loadScreen(event, "CalendarView.fxml");
     }
 
     @FXML
     private void onCrud(ActionEvent event) {
-        loadScreen(event, "CrudScreen.fxml");
+        loadScreen(event, "crud-screen.fxml");
     }
 
     @FXML
     private void onStudySession(ActionEvent event) {
-        loadScreen(event, "StudySessionScreen.fxml");
+        loadScreen(event, "studySession-Screen.fxml");
     }
 
     @FXML
