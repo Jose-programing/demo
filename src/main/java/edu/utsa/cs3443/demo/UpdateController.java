@@ -1,7 +1,6 @@
 package edu.utsa.cs3443.demo;
 
 
-import edu.utsa.cs3443.demo.model.TaskManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -14,11 +13,8 @@ import java.io.IOException;
 
 public class UpdateController {
 
-    private TaskManager manager;
-
-    public void setManager(TaskManager manager) {
-        this.manager = manager;
-    }
+    //only need to use task because we are updating one task.
+    private Task task;
 
     @FXML
     private Button returnButton;
@@ -38,7 +34,6 @@ public class UpdateController {
     @FXML
     private TextField priorityField;
 
-    private Task task;
 
     public void setTask(Task task) {
         this.task = task;
@@ -59,7 +54,7 @@ public class UpdateController {
             showAlert("Please fill in all fields!", Alert.AlertType.WARNING);
             return;
         }
-        int priority = 0;
+        int priority;
         try {
             priority = Integer.parseInt(priorityField.getText());
         } catch (NumberFormatException e) {
@@ -67,21 +62,12 @@ public class UpdateController {
             return;
         }
 
-        if (!task.getTaskTitle().equals(title) || !task.getTime().equals(time)) {
-            if (manager.taskExists(title, time)) {
-                showAlert("This item already exists", Alert.AlertType.ERROR);
-                return;
-            }
-        }
-        if (manager.priorityExists(priority) && task.getPriority() != priority) {
-            showAlert("Priority is in use", Alert.AlertType.WARNING);
-            return;
-        }
+
         task.setTaskType(type);
         task.setTaskTitle(title);
         task.setTime(time);
         task.setPriority(priority);
-        manager.SaveDataToFile();
+
         showAlert("Item updated Succesfully", Alert.AlertType.INFORMATION);
         Stage stage = (Stage) titleField.getScene().getWindow();
         stage.close();

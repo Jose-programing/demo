@@ -1,18 +1,21 @@
 package edu.utsa.cs3443.demo;
 
-import edu.utsa.cs3443.demo.model.TaskManager;
+
+import edu.utsa.cs3443.demo.model.DataStore;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 
@@ -20,7 +23,9 @@ import javafx.scene.Scene;
 
 public class CrudController {
 
-    private TaskManager manager =  new TaskManager();
+    //hashmap and currentdate passed by calander controller
+    private LocalDate currentDate;
+
     @FXML
     private Button addButton;
 
@@ -28,7 +33,7 @@ public class CrudController {
     private Button deleteButton;
 
     @FXML
-    private TextArea outputArea;
+    private TextField outputArea;
 
     @FXML
     private Button returnButton;
@@ -39,15 +44,32 @@ public class CrudController {
     @FXML
     private ListView<Task> taskListView;
 
+    public void addTask(Task task) {
+        DataStore.taskMap.putIfAbsent(currentDate, new ArrayList<>());
+        DataStore.taskMap.get(currentDate).add(task);
+
+        refreshList();
+    }
+
     private void refreshList() {
-        taskListView.setItems(FXCollections.observableArrayList(manager.getTasks()));
+        if (DataStore.taskMap == null || currentDate == null) return;
+
+        ArrayList<Task> tasks =
+                DataStore.taskMap.getOrDefault(currentDate, new ArrayList<>());
+
+        taskListView.setItems(FXCollections.observableArrayList(tasks));
+
+        outputArea.setText(currentDate.toString());
+    }
+
+    public void setDayToDisplay(LocalDate date) {
+        this.currentDate = date;
+        refreshList();
     }
 
     @FXML
      public void initialize() throws IOException { // Starts and pops up when CRUD screen is opened
-        manager.loadTasks();
-        manager.sortByPriority();
-        refreshList();
+        taskListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }
 
     @FXML
@@ -56,7 +78,9 @@ public class CrudController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("add-screen.fxml"));
             Parent root = loader.load();
             AddController controller = loader.getController();
-            controller.setManager(manager);
+
+            controller.setDate(currentDate);
+
 
 
             Stage stage = new Stage();
@@ -73,39 +97,49 @@ public class CrudController {
     @FXML
     void goToDelete(ActionEvent event) throws IOException {
         Task selected = taskListView.getSelectionModel().getSelectedItem();
-        if(selected == null) {
+
+        if (selected == null) {
             showAlert("Please select a task to remove", Alert.AlertType.WARNING);
             return;
         }
-        manager.deleteTask(selected);
+
+        ArrayList<Task> tasks = DataStore.taskMap.get(currentDate);
+
+        if (tasks != null) {
+            tasks.remove(selected);
+        }
+
         refreshList();
     }
 
     @FXML
     void goToUpdate(ActionEvent event) {
         Task selected = taskListView.getSelectionModel().getSelectedItem();
-        if(selected == null) {
+
+        if (selected == null) {
             showAlert("Please select a task to update", Alert.AlertType.WARNING);
             return;
         }
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("update-screen.fxml"));
             Parent root = loader.load();
+
             UpdateController controller = loader.getController();
             controller.setTask(selected);
-            controller.setManager(manager);
-
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.showAndWait();
+
             refreshList();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
+
+
 
     private void showAlert(String message, Alert.AlertType type) {
         Alert alert = new Alert(type);
@@ -117,47 +151,16 @@ public class CrudController {
 
     @FXML
     void goToCalendar(ActionEvent event) {
-        //also victor
-
-        try{
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("CalendarView.fxml"));
             Parent root = loader.load();
 
-
-            CalendarController calendarController = loader.getController();
-
-            //convert arraylist to hashmap
-            java.util.HashMap<java.time.LocalDate, java.util.ArrayList<Task>> taskMap = new java.util.HashMap<>();
-
-            java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("yyyy-M-d");
-
-
-            //loop through list and put into map
-            for (Task t : manager.getTasks()){
-                java.time.LocalDate date = java.time.LocalDate.parse(t.getDay(), formatter);
-                taskMap.putIfAbsent(date, new java.util.ArrayList<>());
-                taskMap.get(date).add(t);
-
-            }
-
-            //give map back to calendar and go back
-            calendarController.loadTaskMap(taskMap);
-            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
-        }
-        catch (Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
-    }
-
-    //Below added by victor to link with calendar
-
-    private java.time.LocalDate currentDate;
-
-    public void setDayToDisplay(java.time.LocalDate date){
-        this.currentDate = date;
-        System.out.println("Got to day from calender. Day = " + date);
     }
 
 }

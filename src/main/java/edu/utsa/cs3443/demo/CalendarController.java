@@ -15,8 +15,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.YearMonth;
-import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.ResourceBundle;
 
 public class CalendarController implements Initializable {
@@ -112,6 +111,8 @@ public class CalendarController implements Initializable {
             Parent root = loader.load();
 
             CrudController crudController = loader.getController();
+
+            //pass the data implemented by Jose
             crudController.setDayToDisplay(model.getSelectedDate());
 
             Stage stage = (Stage) monthCombo.getScene().getWindow();
@@ -215,11 +216,7 @@ public class CalendarController implements Initializable {
     }
 
 
-    //call after building hash map
-    public void loadTaskMap(HashMap<LocalDate, ArrayList<Task>> taskMap) {
-        model.loadTaskMap(taskMap);
-        refreshGrid();
-    }
+
 
     /**
      * call to see which date got selected

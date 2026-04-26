@@ -1,6 +1,6 @@
 package edu.utsa.cs3443.demo;
 
-import edu.utsa.cs3443.demo.model.TaskManager;
+import edu.utsa.cs3443.demo.model.DataStore;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -11,13 +11,16 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Optional;
 
 public class AddController {
-    private TaskManager manager;
-    public void setManager(TaskManager manager) {
-        this.manager = manager;
-    }
+
+    /// data gets passed from crud controller to here
+
+    LocalDate currentDate;
 
     @FXML
     private Button returnButton;
@@ -37,39 +40,37 @@ public class AddController {
     @FXML
     private TextField priorityField;
 
+    public void setDate(LocalDate date) {
+        this.currentDate = date;
+    }
+
     @FXML
     void FinalAddButton(ActionEvent event) throws IOException {
         String title = titleField.getText();
         String time = timeField.getText();
         String type = typeField.getText();
-        //check if fields are empty
-        if(title.isEmpty() || time.isEmpty() || type.isEmpty() || priorityField.getText().isEmpty()) {
+
+        if (title.isEmpty() || time.isEmpty() || type.isEmpty() || priorityField.getText().isEmpty()) {
             showAlert("Please fill in all fields!", Alert.AlertType.WARNING);
             return;
-            //if any of the fields are empty
         }
-        //Checks if its a number or not
-        int priority = 0;
+
+        int priority;
+
         try {
             priority = Integer.parseInt(priorityField.getText());
         } catch (NumberFormatException e) {
             showAlert("Priority must be a number", Alert.AlertType.ERROR);
             return;
         }
-        //checks if item exists
-        if(manager.taskExists(title, time)){
-            showAlert("This item already exists",Alert.AlertType.ERROR);
-            return;
-        }
-        //cheks if priority is in use and again this is temporary
-        if(manager.priorityExists(priority)) { // this is only temporary and its not user friendly
-            showAlert("Priority is in use", Alert.AlertType.WARNING);
-            return;
-        }
-        //Goes through and creates the task.
-        Task newTask = new Task("2026-4-20", title, type, priority, time);
-        manager.addTask(newTask);
-        manager.SaveDataToFile();
+
+
+        Task newTask = new Task(currentDate, title, type, priority, time);
+
+        //adds to the map
+        DataStore.taskMap.putIfAbsent(currentDate, new ArrayList<>());
+        DataStore.taskMap.get(currentDate).add(newTask);
+
         showAlertAfterAdd();
     }
 
@@ -117,6 +118,7 @@ public class AddController {
         timeField.clear();
         priorityField.clear();
     }
+
 
 }
 
