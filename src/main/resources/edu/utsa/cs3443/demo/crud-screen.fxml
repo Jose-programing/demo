@@ -39,7 +39,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <TextField alignment="CENTER" editable="false" layoutX="543.0" layoutY="23.0" prefHeight="78.0" prefWidth="414.0" text="April 20th, 2026">
+      <TextField fx:id="outputArea" alignment="CENTER" editable="false" layoutX="543.0" layoutY="23.0" prefHeight="78.0" prefWidth="414.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

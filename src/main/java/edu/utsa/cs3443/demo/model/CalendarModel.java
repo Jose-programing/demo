@@ -8,13 +8,15 @@ import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static edu.utsa.cs3443.demo.model.DataStore.taskMap;
+
 public class CalendarModel {
 
     private YearMonth currentYearMonth;
     private LocalDate selectedDate;
 
-    // Reference to teammate's task map — your code only reads from this
-    private HashMap<LocalDate, ArrayList<Task>> taskMap = new HashMap<>();
+    // removed taskmap from calander model
+
 
     public CalendarModel() {
         this.currentYearMonth = YearMonth.now();
@@ -47,22 +49,13 @@ public class CalendarModel {
 
 
 
-    //task hashmap biz
-
-    /**
-     * Hand off for the task map. Mine is viewing only
-     * Part of seeing how many tasks there are
-     */
-    public void loadTaskMap(HashMap<LocalDate, ArrayList<Task>> taskMap) {
-        this.taskMap = taskMap;
-    }
 
     /**
      * Returns the number of tasks on a given date.
      * USed to show number of tasks on a day (before having to go to day screen)
      */
     public int getTaskCount(LocalDate date) {
-        return taskMap.getOrDefault(date, new ArrayList<Task>()).size();
+        return DataStore.taskMap.getOrDefault(date, new ArrayList<Task>()).size();
     }
 
 
