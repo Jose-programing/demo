@@ -1,6 +1,7 @@
 package edu.utsa.cs3443.demo;
 
 
+import edu.utsa.cs3443.demo.model.DataFileStore;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -69,6 +70,7 @@ public class UpdateController {
         task.setPriority(priority);
 
         showAlert("Item updated Succesfully", Alert.AlertType.INFORMATION);
+        DataFileStore.save();
         Stage stage = (Stage) titleField.getScene().getWindow();
         stage.close();
     }

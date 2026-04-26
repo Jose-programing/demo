@@ -1,5 +1,6 @@
 package edu.utsa.cs3443.demo;
 
+import edu.utsa.cs3443.demo.model.DataFileStore;
 import edu.utsa.cs3443.demo.model.DataStore;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,11 +10,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Optional;
 
 public class AddController {
@@ -72,6 +71,7 @@ public class AddController {
         DataStore.taskMap.get(currentDate).add(newTask);
 
         showAlertAfterAdd();
+        DataFileStore.save();
     }
 
     @FXML

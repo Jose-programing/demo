@@ -1,5 +1,6 @@
 package edu.utsa.cs3443.demo;
 
+import edu.utsa.cs3443.demo.model.DataFileStore;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,8 +12,18 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class SplashScreenController {
+
+    //This initializes all the data from the csv file and passes it to the hashMap- Jose
+    public void initialize() {
+        try {
+            DataFileStore.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     private Button enterButton;

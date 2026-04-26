@@ -1,6 +1,7 @@
 package edu.utsa.cs3443.demo;
 
 
+import edu.utsa.cs3443.demo.model.DataFileStore;
 import edu.utsa.cs3443.demo.model.DataStore;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -14,10 +15,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
-
-import javafx.stage.Stage;
-import javafx.scene.Scene;
 
 
 
@@ -107,7 +104,9 @@ public class CrudController {
 
         if (tasks != null) {
             tasks.remove(selected);
+            DataFileStore.save();
         }
+
 
         refreshList();
     }
