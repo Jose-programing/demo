@@ -41,12 +41,6 @@ public class CrudController {
     @FXML
     private ListView<Task> taskListView;
 
-    public void addTask(Task task) {
-        DataStore.taskMap.putIfAbsent(currentDate, new ArrayList<>());
-        DataStore.taskMap.get(currentDate).add(task);
-
-        refreshList();
-    }
 
     private void refreshList() {
         if (DataStore.taskMap == null || currentDate == null) return;
