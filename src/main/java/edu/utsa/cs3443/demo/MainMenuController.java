@@ -1,8 +1,11 @@
 package edu.utsa.cs3443.demo;
 
+import edu.utsa.cs3443.demo.model.DataStore;
 import edu.utsa.cs3443.demo.model.QuoteModel;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.Node;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -48,17 +52,15 @@ public class MainMenuController {
      * Loads tasks due today into the VBox.
      * Replace this with your real task model later.
      */
+    //This is for today's date implemented by jose
+    LocalDate currentDate = LocalDate.now();
     private void loadTodaysTasks() {
-        taskListBox.getChildren().clear();
+        ArrayList<Task> tasks = DataStore.taskMap.getOrDefault(currentDate, new ArrayList<>());
 
-        ArrayList<String> tasks = new ArrayList<>();
-        tasks.add("Calculus Homework — 11:59 PM");
-        tasks.add("Algorithms Homework — 11:59 PM");
-        tasks.add("Review Notes for Midterms");
+        taskListBox.getChildren().clear(); // clear old tasks
 
-        for (String t : tasks) {
-            Label taskLabel = new Label(t);
-            taskLabel.setStyle("-fx-font-size: 16px;");
+        for (Task task : tasks) {
+            Label taskLabel = new Label(task.toString());
             taskListBox.getChildren().add(taskLabel);
         }
     }
@@ -73,8 +75,18 @@ public class MainMenuController {
     }
 
     @FXML
-    private void onCrud(ActionEvent event) {
-        loadScreen(event, "crud-screen.fxml");
+    private void onCrud(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("crud-screen.fxml"));
+        Parent root = loader.load();
+
+        CrudController controller = loader.getController();
+
+        // pass the date
+        controller.setDayToDisplay(currentDate);
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     @FXML
