@@ -21,7 +21,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return String.format("%-24s | %-19s | Time: %s\n", taskTitle, taskType, time);
+        return String.format("%-24s  %-19s  Time: %s\n", taskTitle, taskType, time);
 }
 
 

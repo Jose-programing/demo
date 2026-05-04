@@ -6,12 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1500.0"
-            stylesheets="@styles/Horizon.css"
-            styleClass="multi-theme"
-            xmlns="http://javafx.com/javafx/25"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="edu.utsa.cs3443.demo.AddController">
+<AnchorPane prefHeight="800.0" prefWidth="1500.0" styleClass="multi-theme" stylesheets="@styles/Horizon.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.utsa.cs3443.demo.AddController">
 
    <children>
       <TextField fx:id="titleField" alignment="CENTER" layoutX="664.0" layoutY="254.0" prefHeight="70.0" prefWidth="172.0" promptText="Title">
@@ -23,7 +18,7 @@
             <Font name="System Bold" size="18.0" />
          </font></TextField>
 
-      <Button fx:id="returnButton" layoutX="29.0" layoutY="30.0" mnemonicParsing="false" onAction="#goToCRUD" prefHeight="70.0" prefWidth="200.0" text="Return">
+      <Button fx:id="returnButton" layoutX="29.0" layoutY="30.0" mnemonicParsing="false" onAction="#goToCRUD" prefHeight="70.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="Return">
          <font>
             <Font size="18.0" />
          </font>
@@ -34,13 +29,13 @@
             <Font name="System Bold" size="18.0" />
          </font></TextField>
 
-      <Button fx:id="addTask" layoutX="650.0" layoutY="641.0" mnemonicParsing="false" onAction="#FinalAddButton" prefHeight="70.0" prefWidth="200.0" text="+ ADD TASK">
+      <Button fx:id="addTask" layoutX="650.0" layoutY="641.0" mnemonicParsing="false" onAction="#FinalAddButton" prefHeight="70.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="+ ADD TASK">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
 
-      <Label alignment="CENTER" layoutX="622.0" layoutY="65.0" prefHeight="134.0" prefWidth="255.0" styleClass="red-theme" text="ADD">
+      <Label alignment="CENTER" layoutX="622.0" layoutY="65.0" prefHeight="134.0" prefWidth="255.0" style="-fx-background-radius: 30;" styleClass="red-theme" text="ADD">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>

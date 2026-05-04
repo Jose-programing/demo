@@ -13,6 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -129,6 +131,45 @@ public class CrudController {
 
         moveUpButton.setGraphic(upView);
         moveDownButton.setGraphic(downView);
+        taskListView.setCellFactory(listView -> new ListCell<Task>() {
+            @Override
+            protected void updateItem(Task task, boolean empty) {
+                super.updateItem(task, empty);
+
+                if (empty || task == null) {
+                    setGraphic(null);
+                    return;
+                }
+
+                // Dot
+                Label dot = new Label("•  ");
+                dot.setStyle("-fx-font-size: 36px; -fx-text-fill: #000000;");
+
+                //  Title (bold)
+                Label title = new Label(task.getTaskTitle());
+                title.setStyle("-fx-font-weight: bold; -fx-font-size: 36px;");
+
+                // Task Type (next to title)
+                Label type = new Label("(" + task.getTaskType() + ")");
+                type.setStyle("-fx-text-fill: #888; -fx-font-size: 36px;");
+
+                HBox titleRow = new HBox(title, type);
+                titleRow.setSpacing(6);
+
+                // Time
+                Label time = new Label(task.getTime());
+                time.setStyle("-fx-text-fill: gray; -fx-font-size: 24px;");
+
+                VBox textBox = new VBox(titleRow, time);
+                textBox.setSpacing(2);
+
+                HBox row = new HBox(dot, textBox);
+                row.setSpacing(8);
+
+                setGraphic(row);
+            }
+
+        });
     }
 
     @FXML

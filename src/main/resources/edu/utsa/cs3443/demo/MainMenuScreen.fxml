@@ -23,7 +23,7 @@
 
         <Label styleClass="section-label" text="Due Today:" />
 
-        <VBox fx:id="taskListBox" spacing="10" />
+        <VBox fx:id="taskListBox" spacing="10" style="-fx-font-family: monospace;" />
 
         <Separator prefWidth="600" />
 
