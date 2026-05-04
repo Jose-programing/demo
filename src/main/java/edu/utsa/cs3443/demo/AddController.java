@@ -36,8 +36,6 @@ public class AddController {
     @FXML
     private TextField typeField;
 
-    @FXML
-    private TextField priorityField;
 
     public void setDate(LocalDate date) {
         this.currentDate = date;
@@ -49,23 +47,12 @@ public class AddController {
         String time = timeField.getText();
         String type = typeField.getText();
 
-        if (title.isEmpty() || time.isEmpty() || type.isEmpty() || priorityField.getText().isEmpty()) {
+        if (title.isEmpty() || time.isEmpty() || type.isEmpty()) {
             showAlert("Please fill in all fields!", Alert.AlertType.WARNING);
             return;
         }
 
-        int priority;
-
-        try {
-            priority = Integer.parseInt(priorityField.getText());
-        } catch (NumberFormatException e) {
-            showAlert("Priority must be a number", Alert.AlertType.ERROR);
-            return;
-        }
-
-
-
-        Task newTask = new Task(currentDate, title, type, priority, time);
+        Task newTask = new Task(currentDate, title, type, time);
         for (Task t : DataStore.taskMap.getOrDefault(currentDate, new ArrayList<>())) {
             if(newTask.getTime().equals(t.getTime()) && newTask.getTaskTitle().equals(t.getTaskTitle()) && newTask.getTaskType().equals(t.getTaskType())) {
                 showAlert("This task already exists", Alert.AlertType.WARNING);
@@ -124,7 +111,6 @@ public class AddController {
         titleField.clear();
         typeField.clear();
         timeField.clear();
-        priorityField.clear();
     }
 
 

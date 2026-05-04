@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1500.0" style="-fx-background-color: babyBlue;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.utsa.cs3443.demo.CrudController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1500.0" stylesheets="@styles/Horizon.css" styleClass="multi-theme" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.utsa.cs3443.demo.CrudController">
    <children>
       <ListView fx:id="taskListView" layoutX="35.0" layoutY="231.0" prefHeight="500.0" prefWidth="912.0" style="-fx-font-family: monospace; -fx-font-size: 22; -fx-padding: 10;">
          <cursor>
@@ -47,7 +47,7 @@
             <Cursor fx:constant="NONE" />
          </cursor>
       </TextField>
-      <Button contentDisplay="CENTER" layoutX="947.0" layoutY="231.0" mnemonicParsing="false" onAction="#moveUp" prefHeight="250.0" prefWidth="52.0" />
-      <Button layoutX="947.0" layoutY="481.0" mnemonicParsing="false" onAction="#moveDown" prefHeight="250.0" prefWidth="52.0" />
+      <Button fx:id="moveUpButton" contentDisplay="CENTER" layoutX="947.0" layoutY="231.0" mnemonicParsing="false" onAction="#moveUp" prefHeight="250.0" prefWidth="50.0" />
+      <Button fx:id="moveDownButton" layoutX="947.0" layoutY="481.0" mnemonicParsing="false" onAction="#moveDown" prefHeight="250.0" prefWidth="50.0" />
    </children>
 </AnchorPane>

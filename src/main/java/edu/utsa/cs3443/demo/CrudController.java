@@ -11,17 +11,24 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-
 
 
 public class CrudController {
 
     //hashmap and currentdate passed by calander controller
     private LocalDate currentDate;
+
+    @FXML
+    private Button moveUpButton;
+
+    @FXML Button moveDownButton;
 
     @FXML
     private Button addButton;
@@ -49,8 +56,8 @@ public class CrudController {
                 DataStore.taskMap.getOrDefault(currentDate, new ArrayList<>());
 
         taskListView.setItems(FXCollections.observableArrayList(tasks));
-
-        outputArea.setText(currentDate.toString());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");//change it into this format for the date
+        outputArea.setText(currentDate.format(formatter));
     }
 
     public void setDayToDisplay(LocalDate date) {
@@ -109,6 +116,19 @@ public class CrudController {
     @FXML
      public void initialize() throws IOException { // Starts and pops up when CRUD screen is opened
         taskListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        Image upImage = new Image(getClass().getResourceAsStream("/images/Up.png"));
+        Image downImage = new Image(getClass().getResourceAsStream("/images/down.png"));
+
+        ImageView upView = new ImageView(upImage);
+        upView.setFitWidth(25);
+        upView.setFitHeight(25);
+
+        ImageView downView = new ImageView(downImage);
+        downView.setFitWidth(25);
+        downView.setFitHeight(25);
+
+        moveUpButton.setGraphic(upView);
+        moveDownButton.setGraphic(downView);
     }
 
     @FXML

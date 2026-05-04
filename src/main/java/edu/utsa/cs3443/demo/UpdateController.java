@@ -42,7 +42,6 @@ public class UpdateController {
         titleField.setText(task.getTaskTitle());
         typeField.setText(task.getTaskType());
         timeField.setText(task.getTime());
-        priorityField.setText(String.valueOf(task.getPriority()));
 
     }
 
@@ -51,23 +50,14 @@ public class UpdateController {
         String title = titleField.getText().trim();
         String time = timeField.getText().trim();
         String type = typeField.getText().trim();
-        if(title.isEmpty() || time.isEmpty() || type.isEmpty() || priorityField.getText().isEmpty()) {
+        if(title.isEmpty() || time.isEmpty() || type.isEmpty()) {
             showAlert("Please fill in all fields!", Alert.AlertType.WARNING);
             return;
         }
-        int priority;
-        try {
-            priority = Integer.parseInt(priorityField.getText());
-        } catch (NumberFormatException e) {
-            showAlert("Priority must be a number", Alert.AlertType.ERROR);
-            return;
-        }
-
 
         task.setTaskType(type);
         task.setTaskTitle(title);
         task.setTime(time);
-        task.setPriority(priority);
 
         showAlert("Item updated Succesfully", Alert.AlertType.INFORMATION);
         DataFileStore.save();

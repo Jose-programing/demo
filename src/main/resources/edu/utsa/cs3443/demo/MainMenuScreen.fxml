@@ -1,75 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0"
-            stylesheets="@styles/Horizon.css"
-            styleClass="multi-theme"
-            xmlns="http://javafx.com/javafx/25"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="edu.utsa.cs3443.demo.MainMenuController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" styleClass="multi-theme" stylesheets="@styles/Horizon.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.utsa.cs3443.demo.MainMenuController">
 
     <!-- LEFT NAVIGATION MENU -->
     <VBox spacing="20" AnchorPane.leftAnchor="40" AnchorPane.topAnchor="80">
 
-        <Button fx:id="calendarButton"
-                onAction="#onCalendar"
-                prefHeight="40" prefWidth="180"
-                text="CALENDAR" />
+        <Button fx:id="calendarButton" onAction="#onCalendar" prefHeight="40" prefWidth="180" text="CALENDAR" />
 
-        <Button fx:id="crudButton"
-                onAction="#onCrud"
-                prefHeight="40" prefWidth="180"
-                text="CRUD" />
+        <Button fx:id="crudButton" onAction="#onCrud" prefHeight="40" prefWidth="180" text="Tasks" />
 
-        <Button fx:id="studyButton"
-                onAction="#onStudySession"
-                prefHeight="40" prefWidth="180"
-                text="STUDY SESSION" />
+        <Button fx:id="studyButton" onAction="#onStudySession" prefHeight="40" prefWidth="180" text="STUDY SESSION" />
 
     </VBox>
 
     <!-- MAIN CONTENT AREA -->
     <VBox spacing="20" AnchorPane.leftAnchor="260" AnchorPane.topAnchor="80">
 
-        <Label text="WELCOME STUDENT" styleClass="title-label" />
+        <Label styleClass="title-label" text="WELCOME STUDENT" />
 
-        <Label text="Due Today:" styleClass="section-label" />
+        <Label styleClass="section-label" text="Due Today:" />
 
         <VBox fx:id="taskListBox" spacing="10" />
 
         <Separator prefWidth="600" />
 
-        <Label text="Study Session:" styleClass="section-label" />
-        <Label fx:id="studySessionLabel" text="No study session set." styleClass="info-label" />
+        <Label styleClass="section-label" text="Study Session:" />
+        <Label fx:id="studySessionLabel" styleClass="info-label" text="No study session set." />
 
-        <Label text="Priority Level:" styleClass="section-label" />
-        <Label fx:id="priorityLabel" text="None" styleClass="info-label" />
+        <Label styleClass="section-label" text="Priority Level:" />
+        <Label fx:id="priorityLabel" styleClass="info-label" text="None" />
 
         <Separator prefWidth="600" />
 
-        <Label fx:id="quoteLabel"
-               text="Press the button to generate a quote."
-               wrapText="true"
-               styleClass="quote-label" />
+        <Label fx:id="quoteLabel" styleClass="quote-label" text="Press the button to generate a quote." wrapText="true" />
 
-        <Button fx:id="quoteButton"
-                onAction="#onGenerateQuote"
-                prefHeight="40" prefWidth="180"
-                text="Generate Quote" />
+        <Button fx:id="quoteButton" onAction="#onGenerateQuote" prefHeight="40" prefWidth="180" text="Generate Quote" />
 
     </VBox>
 
     <!-- LOGOUT BUTTON (BOTTOM RIGHT) -->
-    <Button fx:id="backButton"
-            onAction="#onBack"
-            prefHeight="35" prefWidth="120"
-            text="LOG OUT"
-            AnchorPane.bottomAnchor="20"
-            AnchorPane.rightAnchor="20" />
+    <Button fx:id="backButton" onAction="#onBack" prefHeight="35" prefWidth="120" text="LOG OUT" AnchorPane.bottomAnchor="20" AnchorPane.rightAnchor="20" />
 
 </AnchorPane>

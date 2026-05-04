@@ -20,7 +20,7 @@
                        fitHeight="208.0" fitWidth="317.0"
                        pickOnBounds="true" preserveRatio="true">
                 <image>
-                    <Image url="@images/rtbLogo.png" />
+                    <Image url="@../../../../images/rtbLogo.png" />
                 </image>
             </ImageView>
 

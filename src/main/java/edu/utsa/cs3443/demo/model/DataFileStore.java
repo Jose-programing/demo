@@ -24,15 +24,14 @@ public class DataFileStore {
 
             String[] parts = line.split(",");
 
-            if (parts.length != 5) continue;
+            if (parts.length != 4) continue;
 
             LocalDate date = LocalDate.parse(parts[0]);
             String title = parts[1];
             String type = parts[2];
-            int priority = Integer.parseInt(parts[3]);
-            String time = parts[4];
+            String time = parts[3];
 
-            Task task = new Task(date, title, type, priority, time);
+            Task task = new Task(date, title, type, time);
 
             DataStore.taskMap.putIfAbsent(date, new ArrayList<>());
             DataStore.taskMap.get(date).add(task);
@@ -45,7 +44,7 @@ public class DataFileStore {
 
         for (LocalDate date : DataStore.taskMap.keySet()) {
             for (Task task : DataStore.taskMap.get(date)) {
-                writer.write(task.getDay() + "," + task.getTaskTitle() + "," + task.getTaskType() + "," + task.getPriority() + "," + task.getTime());
+                writer.write(task.getDay() + "," + task.getTaskTitle() + "," + task.getTaskType() + ","  + task.getTime());
                 writer.write("\n");
             }
         }
