@@ -179,10 +179,10 @@ public class CalendarController implements Initializable {
             cell.setStyle("-fx-background-color: #4A90D9; -fx-text-fill: white; -fx-font-weight: bold;");
         }
         else if (model.isToday(date)) {
-            cell.setStyle("-fx-background-color: #E8F4FD; -fx-border-color: #4A90D9; -fx-border-width: 1.5;");
+            cell.setStyle("-fx-background-color: #E8F4FD; -fx-text-fill: black; -fx-border-color: #4A90D9; -fx-border-width: 1.5;");
         }
         else {
-            cell.setStyle("-fx-background-color: #f5f5f5;");
+            cell.setStyle("-fx-background-color: #f5f5f5; -fx-text-fill: black;");
         }
 
         cell.setOnAction(e -> {
