@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1500.0" style="-fx-background-image: sd;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.utsa.cs3443.demo.CrudController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1500.0" style="-fx-background-color: babyBlue;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.utsa.cs3443.demo.CrudController">
    <children>
-      <ListView fx:id="taskListView" layoutX="35.0" layoutY="231.0" prefHeight="498.0" prefWidth="1066.0" style="-fx-font-family: monospace; -fx-font-size: 22;">
+      <ListView fx:id="taskListView" layoutX="35.0" layoutY="231.0" prefHeight="500.0" prefWidth="912.0" style="-fx-font-family: monospace; -fx-font-size: 22; -fx-padding: 10;">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor></ListView>
@@ -19,27 +19,27 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="updateButton" layoutX="1170.0" layoutY="400.0" mnemonicParsing="false" onAction="#goToUpdate" prefHeight="70.0" prefWidth="200.0" text="Update">
+      <Button fx:id="updateButton" layoutX="1170.0" layoutY="400.0" mnemonicParsing="false" onAction="#goToUpdate" prefHeight="70.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="Update">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="returnButton" layoutX="24.0" layoutY="27.0" mnemonicParsing="false" onAction="#goToCalendar" prefHeight="70.0" prefWidth="200.0" text="Return">
+      <Button fx:id="returnButton" layoutX="24.0" layoutY="27.0" mnemonicParsing="false" onAction="#goToCalendar" prefHeight="70.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="Return">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="addButton" alignment="CENTER" layoutX="1170.0" layoutY="248.0" mnemonicParsing="false" onAction="#goToAdd" prefHeight="70.0" prefWidth="200.0" text="ADD">
+      <Button fx:id="addButton" alignment="CENTER" layoutX="1170.0" layoutY="248.0" mnemonicParsing="false" onAction="#goToAdd" prefHeight="70.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="ADD">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="deleteButton" layoutX="1170.0" layoutY="566.0" mnemonicParsing="false" onAction="#goToDelete" prefHeight="70.0" prefWidth="200.0" text="Remove">
+      <Button fx:id="deleteButton" layoutX="1170.0" layoutY="566.0" mnemonicParsing="false" onAction="#goToDelete" prefHeight="70.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="Remove">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="outputArea" alignment="CENTER" editable="false" layoutX="543.0" layoutY="23.0" prefHeight="78.0" prefWidth="414.0">
+      <TextField fx:id="outputArea" alignment="CENTER" editable="false" layoutX="543.0" layoutY="23.0" prefHeight="78.0" prefWidth="414.0" style="-fx-background-radius: 30;">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -47,5 +47,7 @@
             <Cursor fx:constant="NONE" />
          </cursor>
       </TextField>
+      <Button contentDisplay="CENTER" layoutX="947.0" layoutY="231.0" mnemonicParsing="false" onAction="#moveUp" prefHeight="250.0" prefWidth="52.0" />
+      <Button layoutX="947.0" layoutY="481.0" mnemonicParsing="false" onAction="#moveDown" prefHeight="250.0" prefWidth="52.0" />
    </children>
 </AnchorPane>

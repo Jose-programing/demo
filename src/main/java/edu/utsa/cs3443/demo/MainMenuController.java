@@ -52,16 +52,21 @@ public class MainMenuController {
      * Loads tasks due today into the VBox.
      * Replace this with your real task model later.
      */
-    //This is for today's date implemented by jose
+    //This is for today's date implemented by jose and made the max amount of tasks displayed to 5 because it grows forever.
     LocalDate currentDate = LocalDate.now();
     private void loadTodaysTasks() {
         ArrayList<Task> tasks = DataStore.taskMap.getOrDefault(currentDate, new ArrayList<>());
+        int MaxItems = 0;
 
         taskListBox.getChildren().clear(); // clear old tasks
 
         for (Task task : tasks) {
+            if(MaxItems == 5) {
+                return;
+            }
             Label taskLabel = new Label(task.toString());
             taskListBox.getChildren().add(taskLabel);
+            MaxItems++;
         }
     }
 

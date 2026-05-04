@@ -59,6 +59,54 @@ public class CrudController {
     }
 
     @FXML
+    void moveUp() {
+        int index = taskListView.getSelectionModel().getSelectedIndex();
+
+        if (index > 0) {
+            ArrayList<Task> tasks = DataStore.taskMap.get(currentDate);
+
+            Task temp = tasks.get(index);
+            tasks.set(index, tasks.get(index - 1));
+            tasks.set(index - 1, temp);
+
+            try {
+                DataFileStore.save();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            refreshList();
+            taskListView.getSelectionModel().select(index - 1);
+        }
+    }
+
+    @FXML
+    void moveDown() {
+        int index = taskListView.getSelectionModel().getSelectedIndex();
+
+        ArrayList<Task> tasks = DataStore.taskMap.get(currentDate);
+        if(index < 0) {
+            return;
+        }
+
+
+        if (index < tasks.size() - 1) {
+            Task temp = tasks.get(index);
+            tasks.set(index, tasks.get(index + 1));
+            tasks.set(index + 1, temp);
+
+            try {
+                DataFileStore.save();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            refreshList();
+            taskListView.getSelectionModel().select(index + 1);
+        }
+    }
+
+    @FXML
      public void initialize() throws IOException { // Starts and pops up when CRUD screen is opened
         taskListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }
@@ -89,6 +137,10 @@ public class CrudController {
     void goToDelete(ActionEvent event) throws IOException {
         Task selected = taskListView.getSelectionModel().getSelectedItem();
 
+        if(selected == null && taskListView.getItems().isEmpty()) {
+            showAlert("No Tasks exist at this moment", Alert.AlertType.WARNING);
+            return;
+        }
         if (selected == null) {
             showAlert("Please select a task to remove", Alert.AlertType.WARNING);
             return;
@@ -108,6 +160,11 @@ public class CrudController {
     @FXML
     void goToUpdate(ActionEvent event) {
         Task selected = taskListView.getSelectionModel().getSelectedItem();
+
+        if(selected == null && taskListView.getItems().isEmpty()) {
+            showAlert("No Tasks at this moment", Alert.AlertType.WARNING);
+            return;
+        }
 
         if (selected == null) {
             showAlert("Please select a task to update", Alert.AlertType.WARNING);

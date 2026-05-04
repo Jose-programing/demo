@@ -64,7 +64,15 @@ public class AddController {
         }
 
 
+
         Task newTask = new Task(currentDate, title, type, priority, time);
+        for (Task t : DataStore.taskMap.getOrDefault(currentDate, new ArrayList<>())) {
+            if(newTask.getTime().equals(t.getTime()) && newTask.getTaskTitle().equals(t.getTaskTitle()) && newTask.getTaskType().equals(t.getTaskType())) {
+                showAlert("This task already exists", Alert.AlertType.WARNING);
+                return;
+            }
+
+        }
 
         //adds to the map
         DataStore.taskMap.putIfAbsent(currentDate, new ArrayList<>());
