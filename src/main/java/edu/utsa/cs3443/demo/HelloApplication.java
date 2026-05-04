@@ -14,6 +14,7 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("Horizon Planner");
         stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
         //Yo, this is victor's change
     }

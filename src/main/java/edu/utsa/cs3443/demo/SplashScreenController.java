@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.scene.Parent;
 
 import java.io.IOException;
 import java.util.ResourceBundle;
@@ -52,7 +53,23 @@ public class SplashScreenController {
     /**
      * Loads the main menu screen after fade-out.
      */
+
     private void loadMainMenu(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/utsa/cs3443/demo/MainMenuScreen.fxml"));
+            Parent root = loader.load(); // Load the FXML
+
+            // Grab the current window and just swap the inside content!
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.getScene().setRoot(root);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /* private void loadMainMenu(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/edu/utsa/cs3443/demo/MainMenuScreen.fxml")
@@ -65,8 +82,9 @@ public class SplashScreenController {
                     .getWindow();
 
             stage.setScene(mainScene);
-            stage.sizeToScene();
-            stage.centerOnScreen();
+            //stage.sizeToScene();
+            //stage.centerOnScreen();
+            stage.setMaximized(true);
             stage.show();
 
         } catch (IOException e) {
@@ -74,4 +92,8 @@ public class SplashScreenController {
             // TODO: Replace with an Alert dialog later
         }
     }
+    */
+
+
+
 }

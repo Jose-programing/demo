@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -96,13 +97,14 @@ public class studySessionController {
     private void launchCustomTopicScreen(ActionEvent event){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("customTopic-screen.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-
+            //Scene scene = new Scene(fxmlLoader.load());
+            Parent root = fxmlLoader.load();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
             stage.setTitle("Add Custom Topic");
-            stage.show();
+            stage.getScene().setRoot(root);
+            //stage.setMaximized(true);
+            //stage.show();
         } catch(IOException e){
             System.out.println("could not load screen");
             e.printStackTrace();
@@ -112,14 +114,17 @@ public class studySessionController {
     private void launch30minScreen(ActionEvent event, Topic topic){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("_30min-screen.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
+            //Scene scene = new Scene(fxmlLoader.load());
+            Parent root = fxmlLoader.load();
+
 
             _30minController controller = fxmlLoader.getController();
             controller.setTopic(topic);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
             stage.setTitle("30 minute study session");
-            stage.show();
+            stage.getScene().setRoot(root);
+            //stage.setMaximized(true);
+            //stage.show();
         } catch(IOException e){
             System.out.println("could not load screen");
             e.printStackTrace();
@@ -128,14 +133,16 @@ public class studySessionController {
     private void launch60minScreen(ActionEvent event,Topic topic){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("_60min-screen.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
+            //Scene scene = new Scene(fxmlLoader.load());
+            Parent root = fxmlLoader.load();
 
             _60minController controller = fxmlLoader.getController();
             controller.setTopic(topic);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
             stage.setTitle("60 minute study session");
-            stage.show();
+            stage.getScene().setRoot(root);
+            //stage.setMaximized(true);
+            //stage.show();
         } catch(IOException e){
             System.out.println("could not load screen");
             e.printStackTrace();
@@ -145,13 +152,14 @@ public class studySessionController {
     private void launchViewProgressScreen(ActionEvent event){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("viewProgress-screen.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-
+            //Scene scene = new Scene(fxmlLoader.load());
+            Parent root = fxmlLoader.load();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
             stage.setTitle("View Progress");
-            stage.show();
+            stage.getScene().setRoot(root);
+            //stage.setMaximized(true);
+            //stage.show();
         } catch(IOException e){
             System.out.println("could not load screen");
             e.printStackTrace();
@@ -165,13 +173,15 @@ public class studySessionController {
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainMenuScreen.fxml"));
+            Parent root = fxmlLoader.load();
 
-            Scene scene = new Scene(fxmlLoader.load());
+
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
+            stage.getScene().setRoot(root);
 
             stage.setTitle("Horizon Planner");
-            stage.show();
+            //stage.setMaximized(true);
+            //stage.show();
         }
         catch(IOException e) {
             e.printStackTrace();

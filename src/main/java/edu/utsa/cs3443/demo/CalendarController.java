@@ -116,8 +116,7 @@ public class CalendarController implements Initializable {
             crudController.setDayToDisplay(model.getSelectedDate());
 
             Stage stage = (Stage) monthCombo.getScene().getWindow();
-            stage.setScene(new Scene(root));
-
+            stage.getScene().setRoot(root);
         }
 
         catch (Exception e){
@@ -208,8 +207,10 @@ public class CalendarController implements Initializable {
             Parent root = loader.load();
 
             Stage stage = (Stage) monthCombo.getScene().getWindow();
+            stage.getScene().setRoot(root);
 
-            stage.setScene(new Scene(root));
+            //stage.setScene(new Scene(root));
+            //stage.setMaximized(true);
         } catch (Exception e) {
             e.printStackTrace();
         }

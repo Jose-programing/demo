@@ -185,6 +185,7 @@ public class CrudController {
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
+            stage.setMaximized(true);
             stage.showAndWait();
             refreshList();
 
@@ -241,6 +242,7 @@ public class CrudController {
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
+            stage.setMaximized(true);
             stage.showAndWait();
 
             refreshList();
@@ -267,7 +269,7 @@ public class CrudController {
             Parent root = loader.load();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            stage.getScene().setRoot(root);
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -90,8 +90,9 @@ public class MainMenuController {
         controller.setDayToDisplay(currentDate);
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+        stage.getScene().setRoot(root);
+        //stage.setMaximized(true);
+        //stage.show();
     }
 
     @FXML
@@ -119,6 +120,21 @@ public class MainMenuController {
 
     private void loadScreen(ActionEvent event, String fxmlName) {
         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/utsa/cs3443/demo/" + fxmlName));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.getScene().setRoot(root);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /*
+    private void loadScreen(ActionEvent event, String fxmlName) {
+        try {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/edu/utsa/cs3443/demo/" + fxmlName)
             );
@@ -130,8 +146,8 @@ public class MainMenuController {
                     .getWindow();
 
             stage.setScene(newScene);
-            stage.sizeToScene();
-            stage.centerOnScreen();
+            stage.setScene(newScene);
+            stage.setMaximized(true);
             stage.show();
 
         } catch (IOException e) {
@@ -139,4 +155,5 @@ public class MainMenuController {
             // TODO: Replace with an Alert dialog later
         }
     }
+   */
 }

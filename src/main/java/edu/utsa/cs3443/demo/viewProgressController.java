@@ -61,13 +61,13 @@ public class viewProgressController {
     private void launchStudySessionScreen(ActionEvent event){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("studySession-screen.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-
+            //Scene scene = new Scene(fxmlLoader.load());
+            javafx.scene.Parent root = fxmlLoader.load();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
+            stage.getScene().setRoot(root);
             stage.setTitle("Study Session");
-            stage.show();
+            //stage.show();
         } catch(IOException e){
             System.out.println("could not load screen");
             e.printStackTrace();
