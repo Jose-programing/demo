@@ -6,45 +6,69 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #f4f6f9;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.utsa.cs3443.demo.MainMenuController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0"
+            stylesheets="@styles/Horizon.css"
+            xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="edu.utsa.cs3443.demo.MainMenuController">
 
-    <!-- LEFT NAVIGATION MENU (styled like Raise The Bar) -->
+    <!-- LEFT NAVIGATION MENU -->
     <VBox spacing="20" AnchorPane.leftAnchor="40" AnchorPane.topAnchor="80">
 
-        <Button fx:id="calendarButton" onAction="#onCalendar" prefHeight="40" prefWidth="180" style="-fx-background-radius: 0; -fx-background-color: #f3f3f3;                        -fx-border-color: #cccccc; -fx-font-size: 14px;" text="CALENDAR" />
+        <Button fx:id="calendarButton"
+                onAction="#onCalendar"
+                prefHeight="40" prefWidth="180"
+                text="CALENDAR" />
 
-        <Button fx:id="crudButton" onAction="#onCrud" prefHeight="40" prefWidth="180" style="-fx-background-radius: 0; -fx-background-color: #f3f3f3;                        -fx-border-color: #cccccc; -fx-font-size: 14px;" text="CRUD" />
+        <Button fx:id="crudButton"
+                onAction="#onCrud"
+                prefHeight="40" prefWidth="180"
+                text="CRUD" />
 
-        <Button fx:id="studyButton" onAction="#onStudySession" prefHeight="40" prefWidth="180" style="-fx-background-radius: 0; -fx-background-color: #f3f3f3;                        -fx-border-color: #cccccc; -fx-font-size: 14px;" text="STUDY SESSION" />
+        <Button fx:id="studyButton"
+                onAction="#onStudySession"
+                prefHeight="40" prefWidth="180"
+                text="STUDY SESSION" />
 
     </VBox>
 
     <!-- MAIN CONTENT AREA -->
     <VBox spacing="20" AnchorPane.leftAnchor="260" AnchorPane.topAnchor="80">
 
-        <Label style="-fx-font-size: 28px; -fx-font-weight: bold;" text="WELCOME STUDENT" />
+        <Label text="WELCOME STUDENT" styleClass="title-label" />
 
-        <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Due Today:" />
+        <Label text="Due Today:" styleClass="section-label" />
 
         <VBox fx:id="taskListBox" spacing="10" />
 
         <Separator prefWidth="600" />
 
-        <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Study Session:" />
-        <Label fx:id="studySessionLabel" style="-fx-font-size: 16px;" text="No study session set." />
+        <Label text="Study Session:" styleClass="section-label" />
+        <Label fx:id="studySessionLabel" text="No study session set." styleClass="info-label" />
 
-        <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Priority Level:" />
-        <Label fx:id="priorityLabel" style="-fx-font-size: 16px;" text="None" />
+        <Label text="Priority Level:" styleClass="section-label" />
+        <Label fx:id="priorityLabel" text="None" styleClass="info-label" />
 
         <Separator prefWidth="600" />
 
-        <Label fx:id="quoteLabel" style="-fx-font-size: 18px; -fx-font-style: italic;" text="Press the button to generate a quote." wrapText="true" />
+        <Label fx:id="quoteLabel"
+               text="Press the button to generate a quote."
+               wrapText="true"
+               styleClass="quote-label" />
 
-        <Button fx:id="quoteButton" onAction="#onGenerateQuote" prefHeight="40" prefWidth="180" style="-fx-background-radius: 0; -fx-background-color: #f3f3f3;                        -fx-border-color: #cccccc; -fx-font-size: 14px;" text="Generate Quote" />
+        <Button fx:id="quoteButton"
+                onAction="#onGenerateQuote"
+                prefHeight="40" prefWidth="180"
+                text="Generate Quote" />
 
     </VBox>
 
     <!-- LOGOUT BUTTON (BOTTOM RIGHT) -->
-    <Button fx:id="backButton" onAction="#onBack" prefHeight="35" prefWidth="120" style="-fx-background-color: #e63333; -fx-text-fill: white;                    -fx-font-size: 14px; -fx-background-radius: 3;" text="LOG OUT" AnchorPane.bottomAnchor="20" AnchorPane.rightAnchor="20" />
+    <Button fx:id="backButton"
+            onAction="#onBack"
+            prefHeight="35" prefWidth="120"
+            text="LOG OUT"
+            AnchorPane.bottomAnchor="20"
+            AnchorPane.rightAnchor="20" />
 
 </AnchorPane>
