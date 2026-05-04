@@ -8,6 +8,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0"
             stylesheets="@styles/Horizon.css"
+            styleClass="multi-theme"
             xmlns="http://javafx.com/javafx/25"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="edu.utsa.cs3443.demo.MainMenuController">

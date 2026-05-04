@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -27,6 +28,9 @@ public class SplashScreenController {
 
     @FXML
     private Button enterButton;
+
+    @FXML
+    private ImageView logoImage;
 
     /**
      * Handles the ENTER button click.

@@ -6,33 +6,74 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.utsa.cs3443.demo.customScreenController">
+<Pane prefHeight="400.0" prefWidth="600.0"
+      stylesheets="@styles/Horizon.css"
+      styleClass="multi-theme"
+      xmlns="http://javafx.com/javafx/25"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="edu.utsa.cs3443.demo.customScreenController">
+
    <children>
-      <TextField fx:id="topicName" layoutX="193.0" layoutY="133.0" promptText="Enter topic name:">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="sessionGoal" layoutX="193.0" layoutY="185.0" promptText="Enter session goal:">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </TextField>
-      <Label layoutX="178.0" layoutY="87.0" text="Enter topic information:">
+
+      <!-- Title -->
+      <Label layoutX="178.0" layoutY="87.0"
+             text="Enter topic information:"
+             styleClass="title-label">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="sumbit" layoutX="254.0" layoutY="247.0" mnemonicParsing="false" onAction="#sumbitOnClick" text="Sumbit">
+
+      <!-- Topic Name -->
+      <TextField fx:id="topicName"
+                 layoutX="193.0" layoutY="133.0"
+                 promptText="Enter topic name:"
+                 styleClass="info-label">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+
+      <!-- Session Goal -->
+      <TextField fx:id="sessionGoal"
+                 layoutX="193.0" layoutY="185.0"
+                 promptText="Enter session goal:"
+                 styleClass="info-label">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+
+      <!-- Submit Button -->
+      <Button fx:id="sumbit"
+              layoutX="254.0" layoutY="247.0"
+              text="Submit"
+              onAction="#sumbitOnClick"
+              styleClass="button">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="back" layoutX="19.0" layoutY="18.0" mnemonicParsing="false" onAction="#backOnClick" text="Back">
+
+      <!-- Back Button -->
+      <Button fx:id="back"
+              layoutX="19.0" layoutY="18.0"
+              text="Back"
+              onAction="#backOnClick"
+              styleClass="button">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Label fx:id="errorLabel" layoutX="206.0" layoutY="287.0" prefHeight="17.0" prefWidth="180.0" text="Label" textFill="#d03737" visible="false" />
+
+      <!-- Error Label -->
+      <Label fx:id="errorLabel"
+             layoutX="206.0" layoutY="287.0"
+             prefWidth="180.0"
+             text="Label"
+             textFill="#d03737"
+             visible="false"
+             styleClass="section-label" />
+
    </children>
 </Pane>

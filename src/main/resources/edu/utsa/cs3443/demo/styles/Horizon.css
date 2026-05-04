@@ -9,17 +9,26 @@
    THEMES (APPLY TO ROOT)
 -------------------------------------------------- */
 
-/* 🔴 Gradient Red Theme */
+/* 🔴⚫⚪ Multi‑Color Vertical Gradient Theme */
+.multi-theme {
+    -fx-background-color: linear-gradient(
+            to bottom,
+            #ff4d4d 0%,
+            #8b0000 33%,
+            #2b2b2b 66%,
+            #ffffff 100%
+    );
+}
+
+/* Optional: keep individual themes if you want them */
 .red-theme {
     -fx-background-color: linear-gradient(to bottom, #ff4d4d, #8b0000);
 }
 
-/* ⚫ Gradient Black Theme */
 .black-theme {
     -fx-background-color: linear-gradient(to bottom, #2b2b2b, #000000);
 }
 
-/* ⚪ Gradient White Theme */
 .white-theme {
     -fx-background-color: linear-gradient(to bottom, #ffffff, #e6e6e6);
 }

@@ -10,7 +10,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="156.0" prefWidth="471.0" spacing="12" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.utsa.cs3443.demo.CalendarController">
+<VBox prefHeight="156.0"
+      prefWidth="471.0"
+      stylesheets="@styles/Horizon.css"
+      styleClass="multi-theme"
+      spacing="12"
+      xmlns="http://javafx.com/javafx/25"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="edu.utsa.cs3443.demo.CalendarController">
 
     <padding>
         <Insets bottom="16" left="16" right="16" top="16" />
