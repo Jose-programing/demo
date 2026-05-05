@@ -1,6 +1,7 @@
 # Horizon Planner
 
 A JavaFX desktop application by Team 'The Planners' for student task and schedule management, built for the CS 3443 course at UTSA.
+Contributors: Carlos Vargas, Jose Ibarra, Alexander Hernandez-Carney, Victor Pasalagua
 
 ## Features
 
